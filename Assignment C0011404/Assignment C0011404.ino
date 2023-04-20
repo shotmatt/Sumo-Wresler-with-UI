@@ -41,11 +41,11 @@ void LineCheck(){
 }
 
 int Bonuses(){
-  lineSensors.readLine(lineSensorValues);
+  lineSensors.readLine(lineSensorValues); //checks line sensors for any change in darkness and sends back the reading 
   if (400 > lineSensorValues[0] > 200 or 400 > lineSensorValues[2] > 200 or 400 > lineSensorValues[4] > 200){
     return 1;
   }else if (750 > lineSensorValues[0] > 450 or 750 > lineSensorValues[0] > 450 or 750 > lineSensorValues[0] > 450){
-    return 2;    
+    return 2;    //the program will be reacting to this by the demonstration
   }else{return 0;}
 }
 
@@ -113,15 +113,15 @@ void loop(){
         loop = 1;
       }
       LineCheck();
-      proxSensors.read();
+      proxSensors.read(); //checks sensors
       int left_sensor = proxSensors.countsLeftWithLeftLeds();
       int center_left_sensor = proxSensors.countsFrontWithLeftLeds();
       int center_right_sensor = proxSensors.countsFrontWithRightLeds();
       int right_sensor = proxSensors.countsRightWithRightLeds(); 
-      if (center_left_sensor < left_sensor && left_sensor > 4){
+      if (center_left_sensor < left_sensor && left_sensor > 4){ //if something is to the left of it it will turn to face it
         motors.setSpeeds(-200, 200);
         delay(100);        
-      }else if (right_sensor > center_right_sensor && right_sensor > 4){
+      }else if (right_sensor > center_right_sensor && right_sensor > 4){ //oppersite if to the right
         motors.setSpeeds(200, -200);
         delay(100);
       }else {
